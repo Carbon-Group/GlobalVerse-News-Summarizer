@@ -7,6 +7,8 @@ const config = {
   theme: {
     extend: {
       colors: {
+        // internal
+        iocolor: "#061C8E",
         // flowbite-svelte
         primary: {
           50: "#FFF5F2",
@@ -20,6 +22,12 @@ const config = {
           800: "#CC4522",
           900: "#A5371B",
         },
+      },
+      backgroundImage: {
+        greeting: "url('/greeting-bg.svg')",
+      },
+      fontFamily: {
+        header: ["Zendots", "cursive"],
       },
     },
   },
