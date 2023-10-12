@@ -10,6 +10,8 @@
       DropdownDivider,
       GradientButton,
       Spinner,
+      Textarea,
+      TextPlaceholder,
     } from 'flowbite-svelte';
     import { ChevronDownSolid, ClipboardSolid, CheckSolid} from 'flowbite-svelte-icons';
     const userOutput = writable("");
@@ -58,15 +60,18 @@
 </div>
 <div id="output-box" class="w-[25em]">
     <Card class="max-w-full dark:bg-iocolor bg-iocolor mx-0">
+      <h5 class="text-white text-xl mb-5">AI answer:</h5>
       {#if currentState ==="running"}
         <Spinner color=white class="mr-3" size="6" />
-        <span class="text-white text-xl">Loading ...</span>
+        <TextPlaceholder size="sm" class="my-8" />
       {:else}
-        <p 
+        <Textarea readonly
           on:change={() => {currentState = "complete"; copied = false}}
-          class="font-normal text-white text-xl dark:text-white leading-tight line-clamp-5">
-            {$userOutput == "" ? "Nothing here" : $userOutput}
-        </p>
+          class="font-normal text-white dark:text-white"
+          rows="auto"
+          style="font-size: 1.125rem; line-height: 1.75rem;"
+          value={$userOutput == "" ? "Nothing here" : $userOutput}>
+        </Textarea>
       {/if}
     {#if currentState === "complete"}
       <Button
