@@ -25,6 +25,7 @@ def parse_news(url):
         news_data = {
             "Title": title,
             "Article Content": article_text,
+            "Link": url,
         }
         return news_data
     else:
