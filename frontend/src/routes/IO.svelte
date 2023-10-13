@@ -2,13 +2,16 @@
     import { getAnswer } from "$lib/func.js";
     import { writable } from "svelte/store";
     import { 
-        Badge,
-        Button,
-        Card,
-        Dropdown,
-        DropdownItem,
-        DropdownDivider,
-        Spinner,
+      Badge,
+      Button,
+      Card,
+      Dropdown,
+      DropdownItem,
+      DropdownDivider,
+      GradientButton,
+      Spinner,
+      Textarea,
+      TextPlaceholder,
     } from 'flowbite-svelte';
     import { ChevronDownSolid, ClipboardSolid, CheckSolid} from 'flowbite-svelte-icons';
     const userOutput = writable("");
@@ -17,49 +20,62 @@
     let currentState = "pre";
     let copied = false;
     async function showAnswer(source) {
-        if (selectedSource === sources[0]) {
-            alert("No source selected!");
-        }
-        currentState = "running";
-        copied = false;
-        userOutput.set(await getAnswer(selectedSource));
-        currentState = "complete";
+      if (selectedSource === sources[0]) {
+          alert("No source selected!");
+          return;
+      }
+      currentState = "running";
+      copied = false;
+      userOutput.set(await getAnswer(selectedSource));
+      currentState = "complete";
     }
-
+    let dropdownOpen = false;
 </script>
 
-<div id="input-box" class="w-[25em]">
 
-  <Button color=blue class="w-full flex justify-between">
-    <Badge color=blue>{selectedSource}</Badge>
+<!-- TODO refactor compenents to divergent files -->
+<div id="input-box" class="w-[25em]">
+  <Button on:click color="bg-iocolor" class="w-full flex bg-iocolor justify-between">
+    <Badge class="text-xl" color=blue>{selectedSource}</Badge>
     <ChevronDownSolid class="w-3 h-3 ml-2"/>
   </Button>
-  <Dropdown bind:value={selectedSource} class="w-full">
-      {#each sources as source}
-        <DropdownItem 
-          class="w-[28em]"
-          on:click={() => selectedSource = source}
-          value={source}>{source}
-        </DropdownItem>
-        <DropdownDivider></DropdownDivider>
-      {/each}
+  <Dropdown bind:open={dropdownOpen} bind:value={selectedSource} class="w-full">
+    {#each sources as source}
+      <DropdownItem 
+        class="w-[28em]"
+        on:click={() => {selectedSource = source; dropdownOpen = false}}
+        value={source}>{source}
+      </DropdownItem>
+      <DropdownDivider></DropdownDivider>
+    {/each}
   </Dropdown>
-  <Button color=blue class="my-2" on:click={() => showAnswer(selectedSource)}>Parse!</Button>
+  <GradientButton
+    outline
+    size="md"
+    class="my-2 text-white bg-iocolor"
+    on:click={() => showAnswer(selectedSource)}
+    color=purpleToPink>
+      <span class="font-bold text-xl">Parse!</span>
+  </GradientButton>
 </div>
 <div id="output-box" class="w-[25em]">
-    <Card class="max-w-full dark:bg-sky-600 bg-sky-600 mx-0">
+    <Card class="max-w-full dark:bg-iocolor bg-iocolor mx-0">
+      <h5 class="text-white text-xl mb-5">AI answer:</h5>
       {#if currentState ==="running"}
-        <Spinner color=white class="mr-3" size="4" />
-        <span class="text-white">Loading ...</span>
+        <Spinner color=white class="mr-3" size="6" />
+        <TextPlaceholder size="sm" class="my-8" />
       {:else}
-        <p 
+        <Textarea readonly
           on:change={() => {currentState = "complete"; copied = false}}
-          class="font-normal text-white dark:text-white leading-tight">
-            {$userOutput == "" ? "Nothing here" : $userOutput}
-        </p>
+          class="font-normal text-white dark:text-white"
+          rows="auto"
+          style="font-size: 1.125rem; line-height: 1.75rem;"
+          value={$userOutput == "" ? "Nothing here" : $userOutput}>
+        </Textarea>
       {/if}
     {#if currentState === "complete"}
       <Button
+        color=blue
         on:click={() => {navigator.clipboard.writeText($userOutput); copied = true}}
         class="top-full right-0 w-0 mt-2">
         {#if currentState === "complete" && !copied}
@@ -71,4 +87,3 @@
     {/if}
     </Card>
 </div>
-
