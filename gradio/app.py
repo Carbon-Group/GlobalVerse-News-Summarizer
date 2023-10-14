@@ -6,8 +6,8 @@ project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../"))
 sys.path.append(project_root)
 
 from src.data_processing.news_parser import get_latest_news
+from src.data_processing.translator import DeepLTranslator
 from src.neural_network.bart_model import summarize_text
-from src.data_processing.translator import translate_text
 
 def summarize_and_translate(text):
     # Парсим последние новости
@@ -17,16 +17,16 @@ def summarize_and_translate(text):
         return "Failed to retrieve news."
 
     # Объединяем тексты новостей в один длинный текст
-    news_text = [news["Article Content"] for news in latest_news][0][:50]
-    print("1")
+    news_text = [news["Article Content"] for news in latest_news][1][:250]
 
     # Суммаризируем текст
     summarized_text = summarize_text(news_text)
-    print("2")
 
     # Переводим суммаризацию
-    translated_text = translate_text(summarized_text)
-    print("3")
+    auth_key = "YOUR_AUTH_KEY"  # Замените на ваш ключ DeepL API
+    target_language = "RU"  # Замените на целевой язык
+    translator = DeepLTranslator(auth_key)
+    translated_text = translator.translate_text(summarized_text, target_language)
 
     return translated_text
 
