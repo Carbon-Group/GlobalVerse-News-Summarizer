@@ -3,9 +3,13 @@ Welcome to Globalverse repository. This project will allow you to parse news fro
 
 ### Project Structure
 `docs`: Documentation
+
 `frontend`: 
+
 `gradio_app`: 
+
 `src`:
+
 `tests`:
 
 ## Getting starting
