@@ -1,6 +1,16 @@
-## Тестовый режим
+# GLOBALVERSE
+Welcome to Globalverse repository. This project will allow you to parse news from foreign sources and translate them. 
 
-### Установка зависимостей
+### Project Structure
+`docs`: Documentation
+`frontend`: 
+`gradio_app`: 
+`src`:
+`tests`:
+
+## Getting starting
+
+### Installing dependencies
 
 - Python
 
@@ -15,14 +25,14 @@ cd frontend
 npm i
 ```
 
-### Запуска сервера Gradio (порт 7860)
+### Starting the Gradio server (port 7860)
 
 ```bash
 cd gradio
 python app.py
 ```
 
-### Запуск сервера Node (порт 5173)
+### Starting the Node server (port 5173)
 
 ```bash
 cd frontend
