@@ -15,14 +15,15 @@
     } from 'flowbite-svelte';
     import { ChevronDownSolid, ClipboardSolid, CheckSolid} from 'flowbite-svelte-icons';
     const userOutput = writable("");
-    let sources = ["No source selected", "1"];
+    // TODO убрать хардкод источника
+    let sources = ["Источник не выбран", "futurism.com"];
     let selectedSource = sources[0];
     let currentState = "pre";
     let copied = false;
     async function showAnswer(source) {
       if (selectedSource === sources[0]) {
-          alert("No source selected!");
-          return;
+        alert("No source selected!");
+        return;
       }
       currentState = "running";
       copied = false;
@@ -33,7 +34,7 @@
 </script>
 
 
-<!-- TODO refactor compenents to divergent files -->
+<!-- TODO декомпозировать этот большой компонент и наладить взаимодействие ввода и вывода -->
 <div id="input-box" class="w-[25em]">
   <Button on:click color="bg-iocolor" class="w-full flex bg-iocolor justify-between">
     <Badge class="text-xl" color=blue>{selectedSource}</Badge>
@@ -60,17 +61,18 @@
 </div>
 <div id="output-box" class="w-[25em]">
     <Card class="max-w-full dark:bg-iocolor bg-iocolor mx-0">
-      <h5 class="text-white text-xl mb-5">AI answer:</h5>
+      <h5 class="text-white text-xl mb-5">Полученная новость</h5>
       {#if currentState ==="running"}
         <Spinner color=white class="mr-3" size="6" />
         <TextPlaceholder size="sm" class="my-8" />
       {:else}
+        <!-- TODO авто-ресайз окошка с текстом -->
         <Textarea readonly
-          on:change={() => {currentState = "complete"; copied = false}}
-          class="font-normal text-white dark:text-white"
+          on:change={(e) => {currentState = "complete"; copied = false;}}
+          class="font-normal text-white dark:text-white h-52"
           rows="auto"
           style="font-size: 1.125rem; line-height: 1.75rem;"
-          value={$userOutput == "" ? "Nothing here" : $userOutput}>
+          value={$userOutput == "" ? "Пока ничего" : $userOutput}>
         </Textarea>
       {/if}
     {#if currentState === "complete"}
