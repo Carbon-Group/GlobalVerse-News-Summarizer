@@ -1,11 +1,18 @@
-from translate import Translator
+import deepl
 
-def translate_text(input_text):
-    translator = Translator(to_lang="ru")
-    translation = translator.translate(input_text)
-    return translation
+class DeepLTranslator:
+    def __init__(self, auth_key):
+        self.translator = deepl.Translator(auth_key)
+
+    def translate_text(self, text, target_language):
+        result = self.translator.translate_text(text, target_lang=target_language)
+        return result.text
 
 if __name__ == "__main__":
-    input_text = input("Введите текст на английском: ")
-    translated_text = translate_text(input_text)
-    print(f"Перевод на русский: {translated_text}")
+    auth_key = "YOUR_AUTH_KEY"
+    target_language = "RU"
+    text_to_translate = "Hello, world!"
+
+    translator = DeepLTranslator(auth_key)
+    translated_text = translator.translate_text(text_to_translate, target_language)
+    print(translated_text)
