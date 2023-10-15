@@ -62,19 +62,19 @@
 1. Склонируйте репозиторий проекта на свой локальный компьютер:
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Carbon-Group/GlobalVerse-News-Summarizer.git
    ```
 
 2. Перейдите в директорию проекта:
 
    ```bash
-   cd GlobalVerse
+   cd GlobalVerse-News-Summarizer
    ```
 
 3. Установите зависимости Python:
 
    ```bash
-   pip install -r src/requirements.txt
+   pip install -r requirements.txt
    ```
 
 4. Установите зависимости для веб-приложения:
