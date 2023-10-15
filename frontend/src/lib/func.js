@@ -3,6 +3,7 @@ import { client } from "@gradio/client";
 export async function getAnswer(text) {
   const app = await client("http://127.0.0.1:7860/");
   const result = await app.predict(0, [
+    // пока это dummy ввод, в будущем должна быть ссылка на статью
     "How to center a div in css?", // string  in 'Input text' Textbox component
   ]);
   console.log(result.data);
