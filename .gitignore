@@ -1,7 +1,34 @@
-venv
-*__pycache__*
+# Игнорировать временные файлы
+*.swp
+*.swo
+*.swn
+*.swo
+*~
+*.log
+__pycache__/
 
-*node_modules*
-*.npmrc*
-*.svelte-kit*
-*package-lock.json*
+# Игнорировать виртуальное окружение Python
+venv/
+env/
+.pyc
+
+# Игнорировать локальные настройки и временные файлы IDE
+.vscode/
+.idea/
+
+# Игнорировать сгенерированные и временные файлы Svelte и Vite
+node_modules/
+build/
+dist/
+__sapper__/
+.svelte/
+
+# Игнорировать локальные настройки Svelte
+.svelte-kit/
+
+# Игнорировать JSON-файл с данными новостей (предполагается, что он используется для локальной разработки)
+src/data_processing/news_data.json
+
+# Игнорировать файлы .npmrc и package-lock.json
+.npmrc
+package-lock.json
