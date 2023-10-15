@@ -78,7 +78,7 @@ pip install -r requirements.txt
 
 ### Настройка API
 
-Проект использует API DeepL для перевода текста. Вам необходимо получить ключ API от DeepL и заменить "YOUR_AUTH_KEY" в файлах `src/data_processing/translator.py` и `src/neural_network/bart_model.py` на ваш ключ.
+Проект использует API DeepL для перевода текста. Вам необходимо получить ключ API от DeepL и заменить "YOUR_AUTH_KEY" в файле `gradio_app/app.py` на ваш ключ.
 
 ## Разработка
 
