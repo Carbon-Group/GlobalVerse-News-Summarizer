@@ -17,7 +17,7 @@ def summarize_and_translate():
         return "Failed to retrieve news."
 
     # Объединяем тексты новостей в один длинный текст
-    news_text = [news["Article Content"] for news in latest_news][1][:250]
+    news_text = [news["Article Content"] for news in latest_news][0]
 
     # Суммаризируем текст
     summarized_text = summarize_text(news_text)
