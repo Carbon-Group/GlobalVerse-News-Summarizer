@@ -87,11 +87,11 @@
 ```bash
 pip install -r requirements.txt
 ```
-Так же установмите зависимости для веб-приложения:
+Также установите зависимости для веб-приложения:
 ```bash
    cd frontend
    npm install
-   ```
+```
 
 ### Настройка API
 
@@ -105,21 +105,21 @@ pip install -r requirements.txt
 
 1. Перейдите в директорию frontend/:
 
-  `` bash
+```bash
    cd frontend/
-   ``
+```
 
 2. Установите зависимости фронтенда:
 
-   ``bash
+   ```bash
    npm install
-   ``   
+   ```  
 
 4. Запустите сервер разработки:
 
-   ``bash
+   ```bash
    npm run dev
-   ``
+   ```
    
 Фронтенд будет доступен по адресу http://localhost:5173/.
 
@@ -131,15 +131,15 @@ Gradio приложение находится в директории gradio/. 
 
 1. Перейдите в директорию gradio/:
 
-   ``bash
+   ```bash
    cd gradio/
-   ``
+   ```
 
 2. Запустите Gradio приложение:
 
-   ``bash
+   ```bash
    python app.py
-   ``
+   ```
    
 Приложение Gradio будет доступно по адресу http://localhost:7860/.
 
