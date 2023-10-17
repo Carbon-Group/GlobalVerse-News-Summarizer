@@ -81,7 +81,7 @@
    - Установите зависимости Python:
 
    ```bash
-   pip install -r src/requirements.txt
+   pip install -r requirements.txt
    ```
 
    - Установите зависимости для веб-приложения:
@@ -93,9 +93,7 @@
 
 4. Настройка API:
 
-   - Получите ключ API от DeepL и замените "YOUR_AUTH_KEY" на ваш ключ в файлах:
-     - `src/data_processing/translator.py`
-     - `src/neural_network/bart_model.py`
+   - Получите ключ API от DeepL и замените "YOUR_AUTH_KEY" на ваш ключ в файле `gradio_app/app.py`
 
 ## Разработка
 
@@ -132,7 +130,7 @@
 1. Перейдите в директорию gradio/:
 
    ```bash
-   cd gradio/
+   cd gradio_app/
    ```
 
 2. Запустите Gradio-приложение:
